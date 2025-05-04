@@ -1,0 +1,605 @@
+/* General Styles */
+body {
+    background-color: #0a0a0a; /* Slightly off-black for better contrast */
+    color: #00FF00; /* Matrix Green */
+    font-family: 'Inter', sans-serif; /* Readable font for body */
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    /* Ensure body takes full height for footer positioning if needed */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-image: linear-gradient(to bottom, rgba(0, 20, 0, 0.1) 1px, transparent 1px);
+    background-size: 100% 8px;
+}
+
+/* Thematic Font for Headings and Key Elements - Enhanced Cyberpunk Style */
+h1, h2, h3, h4, h5, h6, .phase-link, .back-button, .main-title, .phase-number, .phase-name {
+    font-family: 'Press Start 2P', cursive; /* Thematic font */
+    color: #00FF00;
+    /* Enhanced glow effect */
+    text-shadow: 0 0 5px rgba(0, 255, 0, 0.7), 0 0 15px rgba(0, 255, 0, 0.3); /* Layered green glow */
+    margin-bottom: 1rem; /* Spacing below headings */
+    letter-spacing: 1px; /* Slight spacing for pixel font */
+    text-transform: uppercase; /* All caps for cyber aesthetic */
+}
+
+/* Styling for the two-line phase title */
+.phase-title-container {
+    text-align: center; /* Center the title block */
+    margin-top: 2rem; /* Space above title block */
+    margin-bottom: 2.5rem; /* Add space below the title block */
+}
+
+.phase-number {
+    display: block; /* Make it take its own line */
+    font-size: 1.8rem; /* Font size for Phase number/emoji */
+    margin-bottom: 0.3rem; /* Space between the two lines */
+    text-shadow: 0 0 3px rgba(0, 255, 0, 0.6); /* Apply reduced glow */
+    line-height: 1.2; /* Adjust line height */
+}
+
+.phase-name {
+    display: block; /* Make it take its own line */
+    font-size: 1.4rem; /* Smaller font size for the name part */
+    margin-top: 0; /* Remove top margin */
+    margin-bottom: 0; /* Remove bottom margin */
+    text-shadow: 0 0 3px rgba(0, 255, 0, 0.6); /* Apply reduced glow */
+    line-height: 1.2; /* Adjust line height */
+}
+
+/* Adjust main title on index page with combined gradient animation and glitch effect */
+@property --k {
+  syntax: "<number>";
+  initial-value: 0;
+  inherits: false;
+}
+
+h1.main-title {
+    font-size: 3rem;
+    text-align: center;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    --k: 0;
+    background: linear-gradient(90deg, hsl(calc(var(--k)*1turn), 95%, 65%), hsl(calc(var(--k)*1turn + 90deg), 95%, 65%)) text;
+    color: transparent;
+    filter: url(#gradient-glow);
+    animation: k 4s linear infinite;
+    position: relative;
+    letter-spacing: 8px;
+    /* Bright things in dark environments usually cast that light, giving off a glow */
+    filter: drop-shadow(0 2px 5px);
+}
+
+/* Glitch effect layers */
+h1.main-title::before,
+h1.main-title::after {
+    content: "ExploRiot";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 110%;
+    text-align: center;
+    z-index: -1;
+}
+
+h1.main-title::before {
+    top: 5px;
+    left: 15px;
+    color: #e0287d;
+    animation: paths 5s step-end infinite, opacity 5s step-end infinite, font 8s step-end infinite, movement 10s step-end infinite;
+}
+
+h1.main-title::after {
+    top: 0;
+    left: -10px;
+    color: #1bc7fb;
+    animation: paths 5s step-end infinite, opacity 5s step-end infinite, font 7s step-end infinite, movement 8s step-end infinite;
+}
+
+@keyframes k {
+  to {
+    --k: 1;
+  }
+}
+
+/* Glitch animations */
+@keyframes paths {
+  0% {
+    clip-path: polygon(
+      0% 43%, 83% 43%, 83% 22%, 23% 22%, 23% 24%, 91% 24%, 91% 26%,
+      18% 26%, 18% 83%, 29% 83%, 29% 17%, 41% 17%, 41% 39%,
+      18% 39%, 18% 82%, 54% 82%, 54% 88%, 19% 88%, 19% 4%,
+      39% 4%, 39% 14%, 76% 14%, 76% 52%, 23% 52%, 23% 35%,
+      19% 35%, 19% 8%, 36% 8%, 36% 31%, 73% 31%, 73% 16%,
+      1% 16%, 1% 56%, 50% 56%, 50% 8%
+    );
+  }
+  5% {
+    clip-path: none;
+  }
+  10% {
+    clip-path: polygon(
+      0% 29%, 44% 29%, 44% 83%, 94% 83%, 94% 56%, 11% 56%,
+      11% 64%, 94% 64%, 94% 70%, 88% 70%, 88% 32%, 18% 32%,
+      18% 96%, 10% 96%, 10% 62%, 9% 62%, 9% 84%, 68% 84%,
+      68% 50%, 52% 50%, 52% 55%, 35% 55%, 35% 87%, 25% 87%,
+      25% 39%, 15% 39%, 15% 88%, 52% 88%
+    );
+  }
+  25% {
+    clip-path: none;
+  }
+  30% {
+    clip-path: polygon(
+      0% 53%, 93% 53%, 93% 62%, 68% 62%, 68% 37%, 97% 37%,
+      97% 89%, 13% 89%, 13% 45%, 51% 45%, 51% 88%, 17% 88%,
+      17% 54%, 81% 54%, 81% 75%, 79% 75%, 79% 76%, 38% 76%,
+      38% 28%, 61% 28%, 61% 12%, 55% 12%, 55% 62%, 68% 62%,
+      68% 51%, 0% 51%, 0% 92%, 63% 92%, 63% 4%, 65% 4%
+    );
+  }
+  45% {
+    clip-path: none;
+  }
+  50% {
+    clip-path: polygon(
+      0% 33%, 2% 33%, 2% 69%, 58% 69%, 58% 94%, 55% 94%,
+      55% 25%, 33% 25%, 33% 85%, 16% 85%, 16% 19%, 5% 19%,
+      5% 20%, 79% 20%, 79% 96%, 93% 96%, 93% 50%, 5% 50%,
+      5% 74%, 55% 74%, 55% 57%, 96% 57%, 96% 59%, 87% 59%,
+      87% 65%, 82% 65%, 82% 39%, 63% 39%, 63% 92%, 4% 92%,
+      4% 36%, 24% 36%, 24% 70%, 1% 70%, 1% 43%, 15% 43%,
+      15% 28%, 23% 28%, 23% 71%, 90% 71%, 90% 86%, 97% 86%,
+      97% 1%, 60% 1%, 60% 67%, 71% 67%, 71% 91%, 17% 91%,
+      17% 14%, 39% 14%, 39% 30%, 58% 30%, 58% 11%, 52% 11%,
+      52% 83%, 68% 83%
+    );
+  }
+  70% {
+    clip-path: none;
+  }
+  75% {
+    clip-path: polygon(
+      0% 26%, 15% 26%, 15% 73%, 72% 73%, 72% 70%, 77% 70%,
+      77% 75%, 8% 75%, 8% 42%, 4% 42%, 4% 61%, 17% 61%,
+      17% 12%, 26% 12%, 26% 63%, 73% 63%, 73% 43%, 90% 43%,
+      90% 67%, 50% 67%, 50% 41%, 42% 41%, 42% 46%, 50% 46%,
+      50% 84%, 96% 84%, 96% 78%, 49% 78%, 49% 25%, 63% 25%,
+      63% 14%
+    );
+  }
+  80% {
+    clip-path: none;
+  }
+  85% {
+    clip-path: polygon(
+      0% 41%, 13% 41%, 13% 6%, 87% 6%, 87% 93%, 10% 93%,
+      10% 13%, 89% 13%, 89% 6%, 3% 6%, 3% 8%, 16% 8%,
+      16% 79%, 0% 79%, 0% 99%, 92% 99%, 92% 90%, 5% 90%,
+      5% 60%, 0% 60%, 0% 48%, 89% 48%, 89% 13%, 80% 13%,
+      80% 43%, 95% 43%, 95% 19%, 80% 19%, 80% 85%, 38% 85%,
+      38% 62%
+    );
+  }
+  90% {
+    clip-path: none;
+  }
+  95% {
+    clip-path: polygon(
+      0% 33%, 2% 33%, 2% 69%, 58% 69%, 58% 94%, 55% 94%,
+      55% 25%, 33% 25%, 33% 85%, 16% 85%, 16% 19%, 5% 19%,
+      5% 20%, 79% 20%, 79% 96%, 93% 96%, 93% 50%, 5% 50%,
+      5% 74%, 55% 74%, 55% 57%, 96% 57%, 96% 59%, 87% 59%,
+      87% 65%, 82% 65%, 82% 39%, 63% 39%, 63% 92%, 4% 92%,
+      4% 36%, 24% 36%, 24% 70%, 1% 70%, 1% 43%, 15% 43%,
+      15% 28%, 23% 28%, 23% 71%, 90% 71%, 90% 86%, 97% 86%,
+      97% 1%, 60% 1%, 60% 67%, 71% 67%, 71% 91%, 17% 91%,
+      17% 14%, 39% 14%, 39% 30%, 58% 30%, 58% 11%, 52% 11%,
+      52% 83%, 68% 83%
+    );
+  }
+}
+
+@keyframes opacity {
+  0% { opacity: 0.1; }
+  5% { opacity: 0.7; }
+  30% { opacity: 0.4; }
+  45% { opacity: 0.6; }
+  76% { opacity: 0.4; }
+  90% { opacity: 0.8; }
+  1%, 7%, 33%, 47%, 78%, 93% { opacity: 0; }
+}
+
+@keyframes font {
+  0% { font-weight: 100; }
+  20%, 50% { font-weight: 500; }
+  35%, 80% { font-weight: 300; }
+}
+
+@keyframes movement {
+  0%, 25% { top: 0; left: 0; }
+  31% { top: -10px; left: 10px; }
+  44% { top: 5px; left: -5px; }
+  60% { top: -7px; left: -7px; }
+  75% { top: 10px; left: 5px; }
+  88% { top: -4px; left: 8px; }
+  100% { top: 0; left: 0; }
+}
+
+h2 {
+    font-size: 1.5rem;
+    border-bottom: 1px solid #005000; /* Subtler underline */
+    padding-bottom: 0.5rem;
+    margin-top: 2.5rem;
+}
+
+h3 {
+    font-size: 1.2rem;
+    margin-top: 2rem;
+}
+
+/* Container for content */
+.container {
+    max-width: 900px; /* Limit content width */
+    margin: 2rem auto; /* Center container horizontally */
+    padding: 1rem 2rem; /* Padding inside container */
+    background-color: rgba(5, 5, 5, 0.9); /* Added transparency to background */
+    border: 1px solid #003300; /* Dark green border */
+    border-radius: 2px; /* Sharper corners for tech look */
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.2), 0 0 40px rgba(0, 50, 0, 0.1); /* Enhanced layered glow */
+    flex-grow: 1; /* Allow container to grow */
+    position: relative;
+    z-index: 10; /* Ensure content is above background */
+    overflow: hidden;
+}
+
+/* Objective Section Styling */
+.objective-box {
+    background-color: #001200; /* Darker green background */
+    border: 1px solid #00FF00; /* Matrix green border */
+    border-radius: 2px; /* Sharper corners */
+    padding: 1.2rem;
+    margin: 1.5rem 0 2.5rem 0;
+    box-shadow: 0 0 12px rgba(0, 255, 0, 0.4); /* Enhanced green glow */
+    position: relative;
+    border-left: 4px solid #00FF00; /* Accent border */
+}
+
+.objective-box::before {
+    content: "OBJECTIVE";
+    position: absolute;
+    top: -10px;
+    left: 15px;
+    background-color: #000000;
+    padding: 0 10px;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.8rem;
+    color: #00FF00;
+    text-shadow: 0 0 3px rgba(0, 255, 0, 0.6);
+}
+
+.objective-box p {
+    margin: 0;
+    font-weight: 500;
+    color: #00FF00;
+}
+
+/* Link Styling */
+a {
+    color: #39FF14; /* Slightly different green for links */
+    text-decoration: none; /* No underline by default */
+    border-bottom: 1px dotted #39FF14; /* Dotted underline */
+    transition: color 0.3s ease, border-bottom-color 0.3s ease, text-shadow 0.3s ease;
+}
+
+a:hover {
+    color: #FFFFFF; /* White on hover */
+    border-bottom-color: #FFFFFF;
+    text-shadow: 0 0 5px #39FF14; /* Subtle glow on hover */
+}
+
+/* Code Blocks */
+pre, code {
+    font-family: 'Courier New', Courier, monospace; /* Monospaced font for code */
+    background-color: #111; /* Dark background for code */
+    color: #00FF00; /* Matrix green text */
+    padding: 1rem; /* Padding inside code block */
+    border-radius: 6px; /* Rounded corners */
+    border: 1px solid #004d00; /* Darker green border */
+    overflow-x: auto; /* Allow horizontal scroll */
+    display: block; /* Make pre take full width */
+    white-space: pre-wrap; /* Wrap long lines within pre */
+    word-wrap: break-word; /* Break words if needed */
+    margin: 1rem 0; /* Spacing around code blocks */
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5); /* Inner shadow */
+}
+
+/* Inline code */
+p code, li code {
+    background-color: #1a1a1a;
+    padding: 0.2em 0.4em;
+    border-radius: 3px;
+    border: 1px solid #003300;
+    font-size: 0.9em;
+    display: inline; /* Make inline code truly inline */
+    white-space: normal;
+    word-wrap: normal;
+    overflow-x: initial;
+}
+
+/* Lists */
+ul, ol {
+    margin-left: 2rem; /* Indentation for lists */
+    margin-bottom: 1rem;
+}
+
+li {
+    margin-bottom: 0.5rem; /* Spacing between list items */
+}
+
+/* Buttons (Phase Links & Back Button) - Enhanced Cyberpunk Style */
+.phase-link, .back-button {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    margin: 0.5rem;
+    background-color: #0a0a0a; /* Dark background */
+    border: 1px solid #00FF00;
+    color: #00FF00;
+    text-align: center;
+    border-radius: 0; /* Sharp corners for tech look */
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    text-decoration: none; /* Remove underline from buttons */
+    border-bottom: none; /* Remove dotted underline from buttons */
+    box-shadow: 0 0 8px rgba(0, 255, 0, 0.4); /* Enhanced button glow */
+    text-shadow: 0 0 5px rgba(0, 255, 0, 0.5); /* Add text glow to buttons */
+    position: relative;
+    overflow: hidden;
+}
+
+.phase-link:hover, .back-button:hover {
+    background-color: #00FF00;
+    color: #000000; /* Black text on hover */
+    box-shadow: 0 0 15px #00FF00, 0 0 30px rgba(0, 255, 0, 0.4); /* Enhanced layered glow on hover */
+    transform: translateY(-1px); /* Subtle lift effect */
+    border-bottom: none; /* Ensure no underline on hover */
+    letter-spacing: 1.5px; /* Slight letter spacing on hover */
+}
+
+/* Add before/after elements for button hover effects */
+.phase-link:before, .back-button:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #00FF00);
+    transition: 0.5s;
+}
+
+.phase-link:hover:before, .back-button:hover:before {
+    left: 100%;
+}
+
+/* Navigation container for phase links */
+.phase-nav {
+    text-align: center;
+    margin-top: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+/* Styling for the phase selection text */
+.phase-select-text {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 1rem;
+    color: #39FF14;
+    text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 0.8; }
+    50% { opacity: 1; }
+    100% { opacity: 0.8; }
+}
+
+/* Back button specific alignment */
+.back-button-container {
+    margin-top: 3rem; /* More space before back button */
+    text-align: center; /* Center back button */
+}
+
+/* Footer Styling */
+.footer {
+    text-align: center;
+    padding: 1.5rem 1rem;
+    margin-top: 2rem; /* Space above footer */
+    color: #009900; /* Darker green for footer text */
+    font-size: 0.8rem;
+    border-top: 1px solid #003300; /* Subtle top border */
+    font-family: 'Inter', sans-serif; /* Readable font for footer */
+    position: relative;
+    z-index: 10; /* Ensure footer is above background */
+}
+
+/* Animated Background */
+:root {
+    --color-bg1: #000500;
+    --color-bg2: #001200;
+    --color1: 0, 255, 0; /* Matrix green */
+    --color2: 0, 200, 0;
+    --color3: 0, 150, 0;
+    --color4: 0, 100, 0;
+    --color5: 0, 50, 0;
+    --color-interactive: 0, 255, 0;
+    --circle-size: 80%;
+    --blending: hard-light;
+}
+
+@keyframes moveInCircle {
+    0% { transform: rotate(0deg); }
+    50% { transform: rotate(180deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes moveVertical {
+    0% { transform: translateY(-50%); }
+    50% { transform: translateY(50%); }
+    100% { transform: translateY(-50%); }
+}
+
+@keyframes moveHorizontal {
+    0% { transform: translateX(-50%) translateY(-10%); }
+    50% { transform: translateX(50%) translateY(10%); }
+    100% { transform: translateX(-50%) translateY(-10%); }
+}
+
+.gradient-bg {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    overflow: hidden;
+    background: linear-gradient(40deg, var(--color-bg1), var(--color-bg2));
+    top: 0;
+    left: 0;
+    z-index: -1; /* Changed from 1 to -1 to place it behind content */
+    opacity: 0.7; /* Added opacity to make it more subtle */
+}
+
+.gradient-bg svg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+}
+
+.gradient-bg .gradients-container {
+    filter: url(#goo) blur(40px);
+    width: 100%;
+    height: 100%;
+}
+
+.gradient-bg .g1 {
+    position: absolute;
+    background: radial-gradient(circle at center, rgba(var(--color1), 0.8) 0, rgba(var(--color1), 0) 50%) no-repeat;
+    mix-blend-mode: var(--blending);
+    width: var(--circle-size);
+    height: var(--circle-size);
+    top: calc(50% - var(--circle-size) / 2);
+    left: calc(50% - var(--circle-size) / 2);
+    transform-origin: center center;
+    animation: moveVertical 30s ease infinite;
+    opacity: 0.3; /* Reduced opacity from 0.5 to 0.3 */
+}
+
+.gradient-bg .g2 {
+    position: absolute;
+    background: radial-gradient(circle at center, rgba(var(--color2), 0.8) 0, rgba(var(--color2), 0) 50%) no-repeat;
+    mix-blend-mode: var(--blending);
+    width: var(--circle-size);
+    height: var(--circle-size);
+    top: calc(50% - var(--circle-size) / 2);
+    left: calc(50% - var(--circle-size) / 2);
+    transform-origin: calc(50% - 400px);
+    animation: moveInCircle 20s reverse infinite;
+    opacity: 0.3; /* Reduced opacity from 0.5 to 0.3 */
+}
+
+.gradient-bg .g3 {
+    position: absolute;
+    background: radial-gradient(circle at center, rgba(var(--color3), 0.8) 0, rgba(var(--color3), 0) 50%) no-repeat;
+    mix-blend-mode: var(--blending);
+    width: var(--circle-size);
+    height: var(--circle-size);
+    top: calc(50% - var(--circle-size) / 2 + 200px);
+    left: calc(50% - var(--circle-size) / 2 - 500px);
+    transform-origin: calc(50% + 400px);
+    animation: moveInCircle 40s linear infinite;
+    opacity: 0.3; /* Reduced opacity from 0.5 to 0.3 */
+}
+
+.gradient-bg .g4 {
+    position: absolute;
+    background: radial-gradient(circle at center, rgba(var(--color4), 0.8) 0, rgba(var(--color4), 0) 50%) no-repeat;
+    mix-blend-mode: var(--blending);
+    width: var(--circle-size);
+    height: var(--circle-size);
+    top: calc(50% - var(--circle-size) / 2);
+    left: calc(50% - var(--circle-size) / 2);
+    transform-origin: calc(50% - 200px);
+    animation: moveHorizontal 40s ease infinite;
+    opacity: 0.3;
+}
+
+.gradient-bg .g5 {
+    position: absolute;
+    background: radial-gradient(circle at center, rgba(var(--color5), 0.8) 0, rgba(var(--color5), 0) 50%) no-repeat;
+    mix-blend-mode: var(--blending);
+    width: calc(var(--circle-size) * 2);
+    height: calc(var(--circle-size) * 2);
+    top: calc(50% - var(--circle-size));
+    left: calc(50% - var(--circle-size));
+    transform-origin: calc(50% - 800px) calc(50% + 200px);
+    animation: moveInCircle 20s ease infinite;
+    opacity: 0.3; /* Reduced opacity from 0.5 to 0.3 */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .container {
+        margin: 1rem; /* Reduce margin on mobile */
+        padding: 1rem; /* Reduce padding on mobile */
+    }
+
+    .phase-number {
+        font-size: 1.4rem;
+    }
+    .phase-name {
+        font-size: 1.1rem;
+    }
+    h1.main-title {
+        font-size: 2.2rem;
+    }
+    
+    .phase-select-text {
+        font-size: 0.8rem;
+    }
+
+    h2 {
+        font-size: 1.25rem;
+    }
+
+    h3 {
+        font-size: 1.1rem;
+    }
+
+    .phase-link, .back-button {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.8rem;
+        display: block; /* Stack buttons vertically */
+        width: 90%; /* Adjust width for better fit */
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    pre, code {
+        font-size: 0.9rem; /* Slightly smaller code font on mobile */
+    }
+
+    .footer {
+        font-size: 0.75rem;
+        padding: 1rem;
+    }
+}

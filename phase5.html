@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ExploRiot - Phase 5: Monetization & Ops</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="gradient-bg">
+        <svg xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <filter id="goo">
+                    <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+                    <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -8" result="goo" />
+                    <feBlend in="SourceGraphic" in2="goo" />
+                </filter>
+            </defs>
+        </svg>
+        <div class="gradients-container">
+            <div class="g1"></div>
+            <div class="g2"></div>
+            <div class="g3"></div>
+            <div class="g4"></div>
+            <div class="g5"></div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="phase-title-container">
+            <h1 class="phase-number">PHASE 5</h1>
+            <h1 class="phase-name">– MONETIZATION & RUTHLESS OPERATIONS</h1>
+        </div>
+
+        <div class="objective-box">
+            <p>Pwn. Persist. Profit. Period.</p>
+        </div>
+
+        <h2>1. CREDENTIAL HARVESTING & IDENTITY THEFT</h2>
+        <p>Every compromised system is a goldmine.</p>
+        <ul>
+            <li><strong>Dumped creds</strong> → Sell on dark markets or use for <strong>credential stuffing</strong></li>
+            <li><strong>Session tokens</strong> → Access private accounts</li>
+            <li><strong>Saved passwords</strong> (Chrome, Firefox) → Use tools like <code>LaZagne</code></li>
+        </ul>
+        <h4>Tools:</h4>
+        <ul>
+            <li><code>LaZagne</code> (Search for it - popular credential recovery tool)</li>
+            <li><code>Mimikatz</code> (Well-known Windows credential dumping tool - search for it)</li>
+            <li><code>BrowserPassView</code>, <a href="https://www.nirsoft.net/" target="_blank" rel="noopener noreferrer">NirSoft suite</a></li>
+        </ul>
+
+        <h2>2. RANSOMWARE DEVELOPMENT</h2>
+        <p>Encrypt. Demand. Profit.</p>
+        <h4>BASICS OF BUILDING YOUR OWN RANSOMWARE:</h4>
+        <ul>
+            <li>Write in <strong>Go</strong>, <strong>C#</strong>, or <strong>Python</strong> (<a href="https://pyinstaller.org/en/stable/" target="_blank" rel="noopener noreferrer">PyInstaller</a> for .exe)</li>
+            <li>Use <strong>AES</strong> for file encryption</li>
+            <li>Generate unique keys per victim</li>
+            <li>Communicate with C2 for decryption</li>
+        </ul>
+        <h4>Features:</h4>
+        <ul>
+            <li>Encrypt local files + mapped network drives</li>
+            <li>Ransom note in each folder (TXT/HTML)</li>
+            <li>Optional: Screenshot taker, keylogger, exfil</li>
+        </ul>
+        <h4>Libraries:</h4>
+        <ul>
+            <li>Python: <a href="https://cryptography.io/en/latest/" target="_blank" rel="noopener noreferrer">cryptography</a>, <a href="https://pypi.org/project/pyAesCrypt/" target="_blank" rel="noopener noreferrer">pyAesCrypt</a></li>
+            <li>C#: <code>System.Security.Cryptography</code></li>
+        </ul>
+        <p><strong>Never use existing code verbatim. AVs already know it.</strong></p>
+
+        <h2>3. BLACK MARKETS & DARK WEB OPS</h2>
+        <h4>PLACES TO OPERATE:</h4>
+        <ul>
+            <li><strong>Tor Markets</strong>: Empire, White House, ASAP (subject to uptime - requires Tor Browser)</li>
+            <li><strong>Telegram</strong>: Closed hacker forums and marketplaces</li>
+            <li><strong>RUTOR / XSS.IS</strong>: Russian-speaking boards (you better use auto-translate and a throwaway identity)</li>
+        </ul>
+
+        <h2>4. BOTNETS / ACCESS BROKER</h2>
+        <p>If you’ve got shells — <strong>rent them out</strong> or <strong>resell access</strong>.</p>
+        <ul>
+            <li>Post “access for sale” ads: “Access to a hospital network, 100 machines, domain admin, $X in BTC.”</li>
+            <li>Build your own <strong>stealer botnet</strong> (check out Raccoon Stealer, RedLine Stealer for structure - search for info)</li>
+        </ul>
+
+        <h2>5. MALWARE-AS-A-SERVICE (MAAS)</h2>
+        <ul>
+            <li>Set up panel + automated deployment (PHP, MySQL)</li>
+            <li>Sell RAT access with pricing tiers</li>
+            <li>Accept Monero/BTC</li>
+            <li>Protect customers with fake “security reports” to justify payload detections</li>
+        </ul>
+
+        <h2>6. DATA EXFIL & LEAK SITES</h2>
+        <ul>
+            <li>Dump stolen databases on <strong>raidforums replacements</strong> (Search for current forums)</li>
+            <li>Leak partial data, ransom for full</li>
+            <li>Offer free samples to prove legitimacy</li>
+        </ul>
+
+        <h2>7. LAB IT OR LIVE IT:</h2>
+        <p>Build a <strong>test APT group</strong>:</p>
+        <ul>
+            <li>Your own servers</li>
+            <li>Your own malware</li>
+            <li>Your own victims (VMs, simulated users, controlled domain)</li>
+        </ul>
+        <p>Simulate a full killchain. <strong>Practice like you’ll attack for real.</strong></p>
+
+        <div class="back-button-container">
+            <a href="index.html" class="back-button">Back to Index</a>
+        </div>
+    </div>
+
+    <footer class="footer">
+        ExploRiot &copy; 2025
+    </footer>
+</body>
+</html>

