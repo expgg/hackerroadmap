@@ -570,12 +570,13 @@ li {
         font-size: 1.1rem;
     }
     h1.main-title {
-        font-size: 1.8rem;
-        letter-spacing: 4px;
+        font-size: 1.6rem;
+        letter-spacing: 2px;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
         width: 100%;
+        padding: 0 10px;
     }
     
     .phase-select-text {
